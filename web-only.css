@@ -1,0 +1,38 @@
+/* web-only.css (dist-web 루트에 복사됨) */
+
+/* 반응형 폭 */
+:root {
+  --widget-w: clamp(300px, 92vw, 560px);
+  --widget-h: calc(var(--widget-w) * 2 / 3);
+  --panel-pad: 12px;
+}
+
+/* 중앙 정렬은 웹에서만 */
+body.web-center {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 24px 12px;
+}
+
+/* 웹일 때는 우하단 고정 해제 */
+body.web-center .widget,
+body.web-center .widget.br {
+  position: static;
+  right: auto;
+  bottom: auto;
+  margin: 0 auto;
+  width: var(--widget-w);
+}
+
+/* Stage 크기 */
+.stage { height: var(--widget-h); margin-top: 12px; }
+
+/* Stage 안의 Pixi 캔버스는 컨테이너에 100%로 맞춤 */
+#stage { width: 100%; height: var(--widget-h); }
+#stage > canvas { width: 100%; height: 100%; display: block; }
+
+/* 다크 배경 보장 (웹에서) */
+body.web-center.theme-dark { background: #0b0b0b !important; }
+html { background: #0b0b0b; }
